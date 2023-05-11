@@ -1,3 +1,5 @@
+import heapq
+import time
 from typing import List
 
 
@@ -22,7 +24,6 @@ def top_k_frequent_2(nums: List[int], k: int) -> List[int]:
     counter = {}
     for num in nums:
         counter[num] = counter.get(num, 0) + 1
-    import heapq
     heap = []
     for num, count in counter.items():
         if len(heap) < k:
@@ -30,8 +31,11 @@ def top_k_frequent_2(nums: List[int], k: int) -> List[int]:
         else:
             heapq.heappushpop(heap, (count, num))
 
-    return [num for count, num in heap]
+    return [num for _, num in heap]
 
 
 if __name__ == '__main__':
+    start_time = time.time()
     print(top_k_frequent_2(nums=[1, 1, 1, 2, 2, 3, 5, 5], k=2))
+    end_time = time.time()
+    print('**********', end_time - start_time)
