@@ -1,8 +1,10 @@
+from collections import Counter
+
+
 def is_anagram_1(s: str, t: str) -> bool:
     """t O(n) / s O(s)"""
     if len(s) != len(t):
         return False
-    from collections import Counter
     counter = Counter(s)
     for char in t:
         if char not in counter or counter[char] == 0:
