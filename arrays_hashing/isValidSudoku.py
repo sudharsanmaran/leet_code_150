@@ -3,6 +3,7 @@ from typing import List
 
 def isValidSudoku(board: List[List[str]]) -> bool:
     """initial approach"""
+    """t O(n * m) / s O(less then n * m)"""
     row_counter, col_counter, sq_1, sq_2, sq_3 = {}, {}, {}, {}, {}
     for i in range(9):
         for j in range(9):
