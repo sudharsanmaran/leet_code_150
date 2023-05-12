@@ -1,0 +1,11 @@
+"""
+take
+1. two pointer goes well with sorted collection
+2. prevent duplicate by skipping already computed combinations rather then using set or dict
+
+
+two pointer use case:
+1. array sum / target sum to find target value i.e 2 sum , 3 sum, closet sum
+2. Array Traversal both ends simultaneously to find specific elements, patterns, or conditions. For example, finding the
+   equilibrium index in an array, checking if an array is palindrome, or finding duplicate elements.
+"""
