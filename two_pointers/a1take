@@ -1,6 +1,6 @@
 """
 take
-1. two pointer goes well with sorted collection
+1. in two pointer move any one pointer towards expected value
 2. prevent duplicate by skipping already computed combinations rather then using set or dict
 
 
