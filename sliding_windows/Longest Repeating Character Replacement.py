@@ -48,14 +48,14 @@ def character_replacement(s: str, k: int) -> int:
 
 
 def character_replacement_1(s: str, k: int) -> int:
-    """there is only 26 possible capital characters so n * 26 is better then n * log n i.e traversal is better
+    """there is only 26 possible capital characters so n * 26 is better than n * log n i.e. traversal is better
     then sorting"""
     """t O(26 * n) / s O(n)"""
     start, counter, res = 0, {}, 0
     for end, char in enumerate(s):
         counter[char] = 1 + counter.get(char, 0)
 
-        while (end - start - max(counter.values())) > k:
+        while (end - start + 1 - max(counter.values())) > k:
             counter[s[start]] -= 1
             start += 1
 
