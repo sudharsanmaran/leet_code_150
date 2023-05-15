@@ -55,7 +55,7 @@ def character_replacement_1(s: str, k: int) -> int:
     for end, char in enumerate(s):
         counter[char] = 1 + counter.get(char, 0)
 
-        while (end - start - max(counter.values())) > k:
+        while (end - start + 1 - max(counter.values())) > k:
             counter[s[start]] -= 1
             start += 1
 
