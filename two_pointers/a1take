@@ -1,6 +1,6 @@
 """
 take
-1. in two pointer move any one pointer towards expected value
+1. in two pointer move any one pointer towards expected value for every iteration
 2. prevent duplicate by skipping already computed combinations rather then using set or dict
 
 
