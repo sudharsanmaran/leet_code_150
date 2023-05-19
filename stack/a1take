@@ -1,0 +1,3 @@
+1. use monotonic stack to find maximum or smallest element in linear time
+2. use stack to evaluate equation or expression
+3. use stack to maintain smallest or largest element in collection to access in constant time
