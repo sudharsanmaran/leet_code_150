@@ -33,7 +33,7 @@ def carFleet(target: int, position: List[int], speed: List[int]) -> int:
 
 def car_fleet(target: int, position: List[int], speed: List[int]) -> int:
     """avoid checking all possible positions by sorting the cars based on their position,
-    and we can use speed time eqn to get time of the car at O(1),
+    and we can use dist speed time eqn to get time of the car at O(1),
     so just need to find if the cars get collide or not, not the exact position of collision
 
     n = position + speed
