@@ -41,8 +41,8 @@ def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
 
 def find_median_sorted_arrays_1(nums1: List[int], nums2: List[int]) -> float:
     """
-    1. to find median need to split array into two parts in sorted order
-    1.1. using binary search to split array into two parts efficiently
+    1. to find median, need to split array into two parts in sorted order.
+    1.1. using binary search, to split array into two parts efficiently.
     t O(log(m + n)) / t O(1)
     """
     n, m = len(nums1), len(nums2)
