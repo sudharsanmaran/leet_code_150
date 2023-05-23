@@ -46,10 +46,36 @@ def find_min(nums: List[int]) -> int:
     return res
 
 
+def find_min_1(nums: List[int]) -> int:
+    """
+    1. if rotated or fully reversed min will be in right side
+    1.1 so instead checking with 0th index we better compare it with right
+    2. to store last mid-value in left, do not decrease right beyond mid
+
+    """
+    left, right = 0, len(nums) - 1
+
+    # Single element array or unaltered sorted array
+    if nums[left] <= nums[right]:
+        return nums[left]
+
+    while left < right:
+        mid = left + (right - left) // 2
+
+        if nums[mid] > nums[right]:
+            # mid in left sorted subarray
+            left = mid + 1
+        else:
+            # mid in right sorted subarray
+            right = mid
+
+    return nums[left]
+
+
 if __name__ == '__main__':
-    print(find_min(nums=[3, 1, 2]))
-    print(find_min(nums=[3, 4, 5, 1, 2]))
-    print(find_min(nums=[0, 1, 2, 3, 4, 5]))
-    print(find_min(nums=[7, 6, 5, 4, 3, 2, 1, 0]))
-    print(find_min(nums=[2, 1, 0]))
-    print(find_min(nums=[2, 1]))
+    print(find_min_1(nums=[1, 2, 3, 4]))
+    print(find_min_1(nums=[3, 4, 5, 1, 2]))
+    print(find_min_1(nums=[0, 1, 2, 3, 4, 5]))
+    print(find_min_1(nums=[7, 6, 5, 4, 3, 2, 1, 0]))
+    print(find_min_1(nums=[2, 1, 0]))
+    print(find_min_1(nums=[2]))
