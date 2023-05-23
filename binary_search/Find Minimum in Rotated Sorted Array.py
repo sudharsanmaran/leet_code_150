@@ -73,7 +73,7 @@ def find_min_1(nums: List[int]) -> int:
 
 
 if __name__ == '__main__':
-    print(find_min_1(nums=[1, 2, 3, 4]))
+    # print(find_min_1(nums=[1, 2, 3, 4]))
     print(find_min_1(nums=[3, 4, 5, 1, 2]))
     print(find_min_1(nums=[0, 1, 2, 3, 4, 5]))
     print(find_min_1(nums=[7, 6, 5, 4, 3, 2, 1, 0]))
