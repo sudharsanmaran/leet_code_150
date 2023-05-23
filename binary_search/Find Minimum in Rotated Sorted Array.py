@@ -48,8 +48,8 @@ def find_min(nums: List[int]) -> int:
 
 def find_min_1(nums: List[int]) -> int:
     """
-    1. if rotated or fully reversed min will be in right side
-    1.1 so instead checking with 0th index we better compare it with right
+    1. if rotated or fully reversed, min will be in right side
+    1.1 so instead checking with 0th index, we better compare it with right
     2. to store last mid-value in left, do not decrease right beyond mid
 
     """
