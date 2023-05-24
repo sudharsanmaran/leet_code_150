@@ -27,6 +27,7 @@ def get_sample_list_node():
     _head.next.next = ListNode(3)
     _head.next.next.next = ListNode(4)
     _head.next.next.next.next = ListNode(5)
+    _head.next.next.next.next.next = ListNode(6)
     return _head
 
 
