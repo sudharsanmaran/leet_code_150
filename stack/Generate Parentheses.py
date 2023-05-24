@@ -4,17 +4,17 @@ from typing import List
 def generateParenthesis(n: int) -> List[str]:
     res = []
 
-    def back_track(left, right, s, length):
+    def combination(left, right, s, length):
         if n * 2 == length:
             res.append(s)
             return
 
         if left < n:
-            back_track(left + 1, right, s + '(', length + 1)
+            combination(left + 1, right, s + '(', length + 1)
         if right < left:
-            back_track(left, right + 1, s + ')', length + 1)
+            combination(left, right + 1, s + ')', length + 1)
 
-    back_track(0, 0, '', 0)
+    combination(0, 0, '', 0)
     return res
 
 
