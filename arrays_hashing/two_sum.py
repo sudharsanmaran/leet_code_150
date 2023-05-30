@@ -27,4 +27,5 @@ def two_sum_1(nums: List[int], target: int) -> List[int]:
 
 
 if __name__ == '__main__':
+    print(two_sum_1([1, 2, 3, 4, 5], 8))
     print(two_sum_1([-1, -2, -3, -4, -5], -8))
