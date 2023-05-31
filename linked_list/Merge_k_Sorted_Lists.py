@@ -24,6 +24,7 @@ def mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
 
 def merge_k_lists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
     """t O(n log n) / t O(1)"""
+
     def merge_list(l1: ListNode, l2: ListNode) -> ListNode:
         res = ListNode(0, None)
         curr = res
@@ -51,23 +52,24 @@ def merge_k_lists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
     return lists[0] if lists else None
 
 
+def create_linked_list(arr):
+    # Create a dummy node to serve as the head of the linked list
+    dummy = ListNode(0)
+    res = []
+
+    # Iterate over the input list and create a linked list
+    for sublist in arr:
+        curr = dummy
+        for val in sublist:
+            curr.next = ListNode(val)
+            curr = curr.next
+        res.append(dummy.next)
+
+    # Return the head of the linked list
+    return res
+
+
 if __name__ == '__main__':
-    def create_linked_list(arr):
-        # Create a dummy node to serve as the head of the linked list
-        dummy = ListNode(0)
-        res = []
-
-        # Iterate over the input list and create a linked list
-        for sublist in arr:
-            curr = dummy
-            for val in sublist:
-                curr.next = ListNode(val)
-                curr = curr.next
-            res.append(dummy.next)
-
-        # Return the head of the linked list
-        return res
-
 
     arr = [[1, 4, 5], [1, 3, 4], [2, 6], [7, 9], [5, 6]]
     linked_lists = create_linked_list(arr)

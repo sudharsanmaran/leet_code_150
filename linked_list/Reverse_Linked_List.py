@@ -16,7 +16,7 @@ def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
         # change next and prev
         curr.next = prev
         prev = curr
-        # increment curr
+        # increment _curr
         curr = _next
     return prev
 
