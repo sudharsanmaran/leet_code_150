@@ -127,12 +127,12 @@ class LFUCache:
 
 if __name__ == '__main__':
     obj = LFUCache(3)
-    obj.put(2, 2)
-    obj.put(1, 1)
-    obj.get(2)
-    obj.get(1)
-    obj.get(2)
-    obj.put(3, 3)
-    obj.put(4, 4)
-    obj.get(3)
-    print(obj.get(1), obj.get(3), obj.put(4, 4), obj.get(2), obj.get(4))
+    print(obj.put(2, 2),
+          obj.put(1, 1),
+          obj.get(2),
+          obj.get(1),
+          obj.get(2),
+          obj.put(3, 3),
+          obj.put(4, 4),
+          obj.get(3),
+          )
