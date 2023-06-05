@@ -9,8 +9,8 @@ so we have to calculate diameter for every node as possible
 if we use pre / in order traversal we end up calculating diameter multiple times for same node
 
 final approach:
-1. use post order traversal to calculate diameter so, we can use children node diameter to calculate parent node.
-with this approach we only calculating diameter only once for every node.
+1. use post order traversal to calculate diameter so, we can use children node height to calculate 
+   diameter of parent node. With this approach we only calculating diameter only once for every node.
 """
 
 
