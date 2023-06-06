@@ -41,15 +41,7 @@ class Solution:
         return node_values
 
 
-if __name__ == '__main__':
-    # Tree:
-    #       6
-    #    /     \
-    #   2       8
-    #  / \     /  \
-    # 0   4   7    9
-    #    / \
-    #   3   5
+def create_tree():
     tree = TreeNode(6)
     tree.left = TreeNode(2)
     tree.right = TreeNode(8)
@@ -59,6 +51,19 @@ if __name__ == '__main__':
     tree.left.right.right = TreeNode(5)
     tree.right.left = TreeNode(7)
     tree.right.right = TreeNode(9)
+    return tree
+
+
+if __name__ == '__main__':
+    # Tree:
+    #       6
+    #    /     \
+    #   2       8
+    #  / \     /  \
+    # 0   4   7    9
+    #    / \
+    #   3   5
+    _tree = create_tree()
 
     solution = Solution()
-    print(solution.lowestCommonAncestor(tree, tree.right.left, tree.right.right))
+    print(solution.lowestCommonAncestor(_tree, _tree.right.left, _tree.right.right))
