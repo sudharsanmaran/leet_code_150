@@ -44,13 +44,14 @@ class Solution:
 def create_tree():
     tree = TreeNode(6)
     tree.left = TreeNode(2)
-    tree.right = TreeNode(8)
+    tree.right = TreeNode(10)
     tree.left.left = TreeNode(0)
     tree.left.right = TreeNode(4)
     tree.left.right.left = TreeNode(3)
     tree.left.right.right = TreeNode(5)
     tree.right.left = TreeNode(7)
-    tree.right.right = TreeNode(9)
+    tree.right.right = TreeNode(11)
+    tree.right.left.right = TreeNode(8)
     return tree
 
 
@@ -58,12 +59,13 @@ if __name__ == '__main__':
     # Tree:
     #       6
     #    /     \
-    #   2       8
+    #   2       10
     #  / \     /  \
-    # 0   4   7    9
-    #    / \
-    #   3   5
+    # 0   4   7    11
+    #    / \    \
+    #   3   5    8
     _tree = create_tree()
+
 
     solution = Solution()
     print(solution.lowestCommonAncestor(_tree, _tree.right.left, _tree.right.right))
