@@ -66,6 +66,5 @@ if __name__ == '__main__':
     #   3   5    8
     _tree = create_tree()
 
-
     solution = Solution()
     print(solution.lowestCommonAncestor(_tree, _tree.right.left, _tree.right.right))
