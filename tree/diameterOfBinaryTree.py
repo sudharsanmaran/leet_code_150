@@ -3,7 +3,7 @@ from typing import Optional
 from tree.Invert_Binary_Tree import TreeNode, create_binary_tree
 
 """initial approach:
-1.Max depth of left + right from root node => issue: max diameter may not pass through root node
+1.Max depth of left + right from node node => issue: max diameter may not pass through node node
 
 so we have to calculate diameter for every node as possible 
 if we use pre / in order traversal we end up calculating diameter multiple times for same node

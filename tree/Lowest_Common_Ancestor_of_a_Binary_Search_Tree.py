@@ -7,8 +7,8 @@ from tree.Invert_Binary_Tree import TreeNode
 1.1 when ever the split occur that's our least common ancestor
 
 edge case:
-1. what if root node itself one of the given two nodes
-    => then root node must be LCA
+1. what if node node itself one of the given two nodes
+    => then node node must be LCA
 """
 
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     #   2       10
     #  / \     /  \
     # 0   4   7    11
-    #    / \    \
+    #    / \   \
     #   3   5    8
     _tree = create_tree()
 
