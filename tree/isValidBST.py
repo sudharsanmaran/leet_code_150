@@ -17,7 +17,7 @@ class Solution:
             if not node:
                 return True
 
-            if not (left_bound < node.val <= right_bound):
+            if not left_bound < node.val < right_bound:
                 return False
 
             return valid(node.left, left_bound, node.val) and valid(node.right, node.val, right_bound)
@@ -29,9 +29,9 @@ if __name__ == '__main__':
     # _tree = create_tree()
     tree = TreeNode(5)
     tree.left = TreeNode(1)
-    tree.right = TreeNode(6)
-    tree.right.left = TreeNode(5)
-    tree.right.right = TreeNode(7)
+    tree.right = TreeNode(7)
+    tree.right.left = TreeNode(6)
+    tree.right.right = TreeNode(8)
 
     solution = Solution()
     print(solution.isValidBST(tree))
