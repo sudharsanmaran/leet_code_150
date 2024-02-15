@@ -1,3 +1,4 @@
+from collections import Counter, defaultdict
 import heapq
 import time
 from typing import List
@@ -6,6 +7,7 @@ from typing import List
 def top_k_frequent(nums: List[int], k: int) -> List[int]:
     """t O(n * n * log(n)) / s O(n)"""
     from collections import Counter
+
     counter = Counter(nums)
     return [num for num, _ in counter.most_common(k)]
 
@@ -15,7 +17,9 @@ def top_k_frequent_1(nums: List[int], k: int) -> List[int]:
     counter = {}
     for num in nums:
         counter[num] = 1 + counter.get(num, 0)
-    return [num for num, _ in sorted(counter.items(), key=lambda x: x[1], reverse=True)[:k]]
+    return [
+        num for num, _ in sorted(counter.items(), key=lambda x: x[1], reverse=True)[:k]
+    ]
 
 
 def top_k_frequent_2(nums: List[int], k: int) -> List[int]:
@@ -34,8 +38,20 @@ def top_k_frequent_2(nums: List[int], k: int) -> List[int]:
     return [num for _, num in heap]
 
 
-if __name__ == '__main__':
+def test(nums: List[int], k: int) -> List[int]:
+    # use index if u want preserve order
+    counter, heap, index = Counter(nums), [], -1
+    for num, count in counter.items():
+        if len(heap) < k:
+            heapq.heappush(heap, (count, index, num))
+        else:
+            heapq.heappushpop(heap, (count, index, num))
+        index -= 1
+    return [num for _, _, num in heapq.nlargest(k, heap)]
+
+
+if __name__ == "__main__":
     start_time = time.time()
-    print(top_k_frequent_2(nums=[1, 1, 1, 2, 2, 3, 5, 5], k=2))
+    print(test(nums=[1, 1, 1, 2, 2, 3, 5, 5], k=2))
     end_time = time.time()
-    print('**********', end_time - start_time)
+    print("**********", end_time - start_time)

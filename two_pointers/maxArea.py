@@ -25,5 +25,16 @@ def _max_area(height: List[int]) -> int:
     return max_area
 
 
-if __name__ == '__main__':
+def maxArea_1(self, height: List[int]) -> int:
+    p1, p2, ma = 0, len(height) - 1, 0
+    while p1 < p2:
+        ma = max(ma, (min(height[p1], height[p2]) * (p2 - p1)))
+        if height[p1] <= height[p2]:
+            p1 += 1
+        else:
+            p2 -= 1
+    return ma
+
+
+if __name__ == "__main__":
     print(_max_area([1, 8, 6, 2, 5, 4, 8, 3, 7]))

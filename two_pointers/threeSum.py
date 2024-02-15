@@ -71,5 +71,26 @@ def _three_sum(nums: List[int]) -> List[List[int]]:
     return res
 
 
-if __name__ == '__main__':
-    print(_three_sum([-2, 0, 1, 1, 2]))
+def threeSum_1(nums: List[int]) -> List[List[int]]:
+    def is_prsent(num: int) -> bool:
+        if counter[num] > 0:
+            counter[num] -= 1
+            return True
+        return False
+
+    counter = Counter(nums)
+    left, right, output = 0, len(nums) - 1, []
+    nums.sort()
+    while left < right:
+        rem = (nums[left] + nums[right]) * -1
+        if is_prsent(rem) and is_prsent(nums[left]) > 0 and is_prsent(nums[right]) > 0:
+            output.append([rem, nums[left], nums[right]])
+        if rem < 0:
+            left += 1
+        else:
+            right -= 1
+    return output
+
+
+if __name__ == "__main__":
+    print(threeSum_1([-1, 0, 1, 2, -1, -4]))

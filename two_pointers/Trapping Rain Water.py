@@ -28,20 +28,19 @@ def trap(height: List[int]) -> int:
 
 def trap_water(height: List[int]) -> int:
     """t O(n) / s O(1)"""
-    n = len(height)
-    left, right, left_max, right_max, pockets = 0, n - 1, 0, 0, 0
+    left, right, pockets = 0, len(height) - 1, 0
+    left_max, right_max = height[left], height[right]
     while left < right:
         if height[left] <= height[right]:
+            left += 1
             left_max = max(left_max, height[left])
             pockets += left_max - height[left]
-            left += 1
         else:
+            right -= 1
             right_max = max(right_max, height[right])
             pockets += right_max - height[right]
-            right -= 1
-
     return pockets
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(trap_water([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))

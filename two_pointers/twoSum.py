@@ -47,7 +47,6 @@ def two_sum_bisect(numbers: List[int], target: int) -> List[int]:
         to_find_idx = bisect_left(numbers, to_find, idx + 1)
         if 0 < to_find_idx < len(numbers) and numbers[to_find_idx] == to_find:
             return [idx + 1, to_find_idx + 1]
-    return
 
 
 def two_sum_1(numbers: List[int], target: int) -> List[int]:
@@ -63,5 +62,16 @@ def two_sum_1(numbers: List[int], target: int) -> List[int]:
             right -= 1
 
 
-if __name__ == '__main__':
-    print(two_sum_1(numbers=[5, 25, 75], target=100))
+def two_sum_2(numbers: List[int], target: int) -> List[int]:
+    left, right = 0, len(numbers) - 1
+    while left < right:
+        if (numbers[left] + numbers[right]) == target:
+            return [left + 1, right + 1]
+        if (numbers[left] + numbers[right]) < target:
+            left += 1
+        else:
+            right -= 1
+
+
+if __name__ == "__main__":
+    print(two_sum_2(numbers=[5, 25, 75], target=100))

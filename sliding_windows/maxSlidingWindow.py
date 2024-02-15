@@ -46,7 +46,30 @@ def max_sliding_window(nums: List[int], k: int) -> List[int]:
     return res
 
 
-if __name__ == '__main__':
+def max_sliding_window_heap(nums: List[int], k: int) -> List[int]:
+    """t O(n * log n(heap operations)) / s O(k(window) + k(passed values))"""
+
+
+def max_sliding_window_deque(nums: List[int], k: int) -> List[int]:
+    """t O(n) / s O(k)"""
+    window, result = deque(), []
+    for i in range(len(nums)):
+        # remove element if window size reached
+        if window and window[0] <= i - k:
+            window.popleft()
+        # iterate and remove smallest element from left side in window
+        while window and nums[window[-1]] < nums[i]:
+            window.pop()
+        # append new element into window
+        window.append(i)
+        # append max element into ressult list after reaching k limit
+        if i >= k - 1:
+            result.append(nums[window[0]])
+    return result
+
+
+if __name__ == "__main__":
+    print(max_sliding_window_deque(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
     print(max_sliding_window(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
-    print(max_sliding_window(nums=[1, -1], k=1))
-    print(max_sliding_window(nums=[7, 2, 4], k=2))
+    print(max_sliding_window_deque(nums=[1, -1], k=1))
+    print(max_sliding_window_deque(nums=[7, 2, 4], k=2))

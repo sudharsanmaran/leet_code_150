@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List
 
 
@@ -25,5 +26,21 @@ def longestConsecutive(nums: List[int]) -> int:
     return max_count
 
 
-if __name__ == '__main__':
-    print(longestConsecutive(nums=[1, 2, 0, 1]))
+def longestConsecutive_1(nums: List[int]) -> int:
+    # if it contains duplicates go with counter
+    # but look operation in dict is slower then set
+    long_seq = 0
+    lookup = Counter(nums)
+    for num in nums:
+        left, right, cont_seq = num - 1, num + 1, 1
+        if lookup[left] < 1:
+            while lookup[right] > 0:
+                lookup[right] -= 1
+                cont_seq += 1
+                right += 1
+        long_seq = max(long_seq, cont_seq)
+    return long_seq
+
+
+if __name__ == "__main__":
+    print(longestConsecutive_1(nums=[100, 4, 200, 1, 3, 2, 1]))
