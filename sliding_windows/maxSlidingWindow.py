@@ -1,4 +1,5 @@
 from collections import Counter, deque
+import heapq
 from typing import List
 
 
@@ -68,8 +69,21 @@ def max_sliding_window_deque(nums: List[int], k: int) -> List[int]:
     return result
 
 
+def maxSlidingWindow_5(nums: List[int], k: int) -> List[int]:
+    window, result = deque(), []
+    for i in range(len(nums)):
+        if window and i + 1 - window[0] > k:
+            window.popleft()
+        while window and nums[window[-1]] < nums[i]:
+            window.pop()
+        window.append(i)
+        if i >= k-1:
+            result.append(nums[window[0]])
+    return result
+
+
 if __name__ == "__main__":
-    print(max_sliding_window_deque(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
-    print(max_sliding_window(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
-    print(max_sliding_window_deque(nums=[1, -1], k=1))
-    print(max_sliding_window_deque(nums=[7, 2, 4], k=2))
+    print(maxSlidingWindow_5(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
+    # print(max_sliding_window(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
+    # print(max_sliding_window_deque(nums=[1, -1], k=1))
+    # print(max_sliding_window_deque(nums=[7, 2, 4], k=2))

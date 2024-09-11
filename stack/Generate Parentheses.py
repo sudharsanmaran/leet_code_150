@@ -8,15 +8,23 @@ def generateParenthesis(n: int) -> List[str]:
         if n * 2 == length:
             res.append(s)
             return
-
         if left < n:
-            combination(left + 1, right, s + '(', length + 1)
+            combination(left + 1, right, s + "(", length + 1)
         if right < left:
-            combination(left, right + 1, s + ')', length + 1)
+            combination(left, right + 1, s + ")", length + 1)
 
-    combination(0, 0, '', 0)
+    combination(0, 0, "", 0)
     return res
 
 
-if __name__ == '__main__':
-    print(generateParenthesis(n=3))
+def _generate(s: str, parn: str, n: int) -> List[str]:
+    # fk how to frame rec func
+    # break logic
+    if n == 0:
+        return s + parn
+
+    return _generate(s, "(", n - 1) + _generate(s, ")", n - 1)
+
+
+if __name__ == "__main__":
+    print(generateParenthesis(2))

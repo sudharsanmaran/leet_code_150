@@ -73,5 +73,15 @@ def two_sum_2(numbers: List[int], target: int) -> List[int]:
             right -= 1
 
 
+def two_sum_3(numbers: List[int], target: int) -> List[int]:
+    from bisect import bisect_left
+    n = len(numbers)
+    for i, num in enumerate(numbers):
+        rem = target - num
+        idx = bisect_left(numbers, rem, lo=i + 1)
+        if idx < n and num + numbers[idx] == target:
+            return [i + 1, idx + 1]
+
+
 if __name__ == "__main__":
-    print(two_sum_2(numbers=[5, 25, 75], target=100))
+    print(two_sum_3(numbers=[5, 25, 75], target=100))

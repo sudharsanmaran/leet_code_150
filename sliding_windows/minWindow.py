@@ -36,33 +36,34 @@ def minWindow(s: str, t: str) -> str:
 
 
 def minWindow_1(s: str, t: str) -> str:
-    def is_sub_string_statisfied() -> bool:
-        nonlocal sub_string_counter
-        nonlocal has_sub
-        is_it = all([val == 0 for val in sub_string_counter.values()])
-        if is_it:
-            sub_string_counter = Counter(t)
-            has_sub = True
-        return is_it
+    t_counter, window_counter, min_window_size, matches, left, start, end, min_len = (
+        Counter(t),
+        Counter(),
+        len(t),
+        0,
+        0,
+        -1,
+        -1,
+        len(s) + 1,
+    )
+    for right, char in enumerate(s):
+        window_counter[char] += 1
+        if window_counter[char] <= t_counter[char]:
+            matches += 1
 
-    sub_string_counter,  has_sub = Counter(t), False
-    start_idx, min_sub_len, res_idx, has_sub = -1, len(s), [0] * 2, False
-    for idx, char in enumerate(s):
-        if sub_string_counter[char] > 0:
-            if start_idx == -1:
-                start_idx = idx
-            sub_string_counter[char] -= 1
-        if is_sub_string_statisfied():
-            cur_len = idx - start_idx
-            if min_sub_len > cur_len:
-                min_sub_len = cur_len
-                res_idx[0] = start_idx
-                res_idx[1] = idx
-    if has_sub:
-        return s[res_idx[0] : res_idx[1] + 1]
-    return ""
+        while matches == min_window_size:
+            if min_len > right + 1 - left:
+                start, end = left, right + 1
+                min_len = right + 1 - left
+
+            if window_counter[s[left]] <= t_counter[s[left]]:
+                matches -= 1
+
+            window_counter[s[left]] -= 1
+            left += 1
+    return s[start:end] if min_len else ""
 
 
 if __name__ == "__main__":
-    print(minWindow_1(s="ADOBECODEBANC", t="ABC"))
-    # print(minWindow(s="a", t="a"))
+    # print(minWindow_1(s="ADOBECODEBANC", t="ABC"))
+    print(minWindow_1(s="a", t="a"))

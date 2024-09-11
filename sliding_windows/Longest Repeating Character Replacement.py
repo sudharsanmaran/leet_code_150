@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 def characterReplacement(s: str, k: int) -> int:
@@ -38,12 +38,14 @@ def character_replacement(s: str, k: int) -> int:
     while i < len(s):
         if is_possible(s[i]):
             valid_str.update(s[i])
-            max_count = max(max_count, sum(count for _, count in valid_str.most_common()))
+            max_count = max(
+                max_count, sum(count for _, count in valid_str.most_common())
+            )
             i += 1
         else:
             valid_str[s[start]] -= 1
             start += 1
-    max_count += (k - sum(count for _, count in valid_str.most_common()[1:]))
+    max_count += k - sum(count for _, count in valid_str.most_common()[1:])
     return max_count
 
 
@@ -79,8 +81,39 @@ def character_replacement_2(s: str, k: int) -> int:
     return res
 
 
-if __name__ == '__main__':
-    print(character_replacement_1(s="AABABBA", k=1))
-    print(character_replacement_2(s="BAAA", k=0))
-    print(character_replacement_2(s="ABCCCCC", k=2))
-    print(character_replacement_2(s="AAAA", k=2))
+def character_replacement_3(s: str, k: int) -> int:
+    """we can't backtrack without extra memory incomplete"""
+
+    left, cur_char, max_len, skip_count, diff_char_index = 0, s[0], 0, k, 0
+    for right, char in enumerate(s):
+        if char != cur_char:
+            if not skip_count:
+                left = diff_char_index
+                cur_char = s[left]
+                skip_count = k - (k - skip_count)
+            else:
+                skip_count -= 1
+
+            diff_char_index = right
+
+        max_len = max(max_len, right - left + 1)
+    return max_len
+
+
+def character_replacement_4(s: str, k: int) -> int:
+    left, counter, max_len, most_frequent = 0, defaultdict(int), 0, 0
+    for right, char in enumerate(s):
+        counter[char] += 1
+        most_frequent = max(most_frequent, counter[char])
+        if (right - left + 1 - most_frequent) > k:
+            counter[s[left]] -= 1
+            left += 1
+        max_len = max(max_len, right - left + 1)
+    return max_len
+
+
+if __name__ == "__main__":
+    print(character_replacement_4(s="AABABBA", k=1))
+    print(character_replacement_4(s="BAAA", k=0))
+    print(character_replacement_4(s="ABCCCCC", k=2))
+    print(character_replacement_4(s="AAAA", k=2))

@@ -92,5 +92,40 @@ def threeSum_1(nums: List[int]) -> List[List[int]]:
     return output
 
 
+def three_sum_2(nums: List[int]) -> List[List[int]]:
+    result, n = [], len(nums)
+
+    nums.sort()
+    for idx, num in enumerate(nums):
+        # skip duplicated
+        if idx > 0 and num == nums[idx - 1]:
+            continue
+
+        left, right = idx + 1, n - 1
+        while left < right:
+            # two pointers
+            cur_sum = num + nums[left] + nums[right]
+            if cur_sum == 0:
+                result.append([num, nums[left], nums[right]])
+                left += 1
+
+                # skip duplicates
+                # to avoid duplicates we can also skip right pointer
+                right -= 1
+
+                # we can avoid left > idx + 1 cuz we already updating left in above line
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
+                #  we can avoid right < n - 2  cuz we already skipping right pointer so
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
+
+            elif cur_sum < 0:
+                left += 1
+            else:
+                right -= 1
+    return result
+
+
 if __name__ == "__main__":
-    print(threeSum_1([-1, 0, 1, 2, -1, -4]))
+    print(three_sum_2([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]))
