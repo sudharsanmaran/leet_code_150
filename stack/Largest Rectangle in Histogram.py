@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List
 
 
@@ -74,6 +75,20 @@ def largest_rectangle_area_1(heights: List[int]) -> int:
     return max_area
 
 
-if __name__ == '__main__':
-    print(largest_rectangle_area_1(heights=[2, 1, 5, 6, 2, 3]))
-    print(largest_rectangle_area_1(heights=[2, 4]))
+def largest_rectangle_area_2(heights: List[int]) -> int:
+    stack, max_area, length = [], 0, len(heights)
+    for end, height in enumerate(heights):
+        start = end
+        while stack and stack[-1][1] > height:
+            st, ht = stack.pop()
+            max_area = max(max_area, (ht * (end - st)))
+            start = st
+        stack.append((start, height))
+    for st, ht in stack:
+        max_area = max(max_area, (ht * (length - st)))
+    return max_area
+
+
+if __name__ == "__main__":
+    print(largest_rectangle_area_2(heights=[2, 1, 5, 6, 2, 3]))
+    # print(largest_rectangle_area_1(heights=[3,6,5,7,4,8,1,0]))

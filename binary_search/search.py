@@ -1,3 +1,4 @@
+from bisect import bisect_left
 from typing import List
 
 
@@ -16,7 +17,11 @@ def search(nums: List[int], target: int) -> int:
     return _search(0, len(nums) - 1)
 
 
+def search_1(nums: List[int], target: int) -> int:
+    idx = bisect_left(nums, target) 
+    return idx if idx < len(nums) and nums[idx] == target else -1 
+
 if __name__ == '__main__':
-    print(search(nums=[-1, 0, 3, 5, 9, 12], target=9))
-    print(search(nums=[-1, 0, 3, 5, 9, 12], target=2))
-    print(search(nums=[-1, 0, 3, 5, 9, 12], target=13))
+    # print(search_1(nums=[-1, 0, 3, 5, 9, 12], target=9))
+    print(search_1(nums=[-1, 0, 3, 5, 9, 12], target=2))
+    # print(search_1(nums=[-1, 0, 3, 5, 9, 12], target=13))

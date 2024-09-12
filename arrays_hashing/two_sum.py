@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import List
 
 
@@ -26,6 +27,35 @@ def two_sum_1(nums: List[int], target: int) -> List[int]:
     return
 
 
+
+
+
+
+def twoSum_11(nums: List[int], target: int) -> List[int]:
+
+    """
+    edge cases:
+    1. num can be duplicate
+    2. avoid finding same num twice
+    """
+    counter = {}
+    for idx, num in enumerate(nums):
+        if num in counter:
+            return [counter[num], idx]
+        else:
+            counter[target - num] = idx
+
+
+
+
+
 if __name__ == '__main__':
-    print(two_sum_1([1, 2, 3, 4, 5], 8))
-    print(two_sum_1([-1, -2, -3, -4, -5], -8))
+    print(twoSum_11([3, 3, 4,], 6))
+    print(twoSum_11([-1, -2, -3, -4, -5], -8))
+
+
+
+
+
+        
+

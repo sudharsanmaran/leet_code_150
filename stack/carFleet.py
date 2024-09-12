@@ -50,8 +50,26 @@ def car_fleet(target: int, position: List[int], speed: List[int]) -> int:
     return possible_fleet
 
 
+
+def car_fleet_1(target: int, position: List[int], speed: List[int]) -> int:
+    # after sorting position how to map its speed? 
+    # y not include its speed as tuple !
+    time_limit, no_collision = [], 0
+    for pos, speed in sorted(
+        ((pos, speed) for pos, speed in zip(position, speed)),
+        reverse=True
+    ):
+        time = (target - pos) / speed
+        if time_limit and time_limit >= time:
+            # how to combine the car once found a collision
+            no_collision += 1
+        else:
+            time_limit = time
+    return len(position) - no_collision
+
+
 if __name__ == '__main__':
-    print(car_fleet(target=12, position=[10, 8, 0, 5, 3], speed=[2, 4, 1, 1, 3]))
-    print(car_fleet(target=10, position=[3], speed=[3]))
-    print(car_fleet(target=100, position=[0, 2, 4], speed=[4, 2, 1]))
-    print(car_fleet(target=20, position=[6, 2, 17], speed=[3, 9, 2]))
+    print(car_fleet_1(target=10, position=[0,4,2], speed=[2,1,3]))
+    # print(car_fleet_1(target=10, position=[3], speed=[3]))
+    # print(car_fleet_1(target=100, position=[0, 2, 4], speed=[4, 2, 1]))
+    # print(car_fleet_1(target=20, position=[6, 2, 17], speed=[3, 9, 2]))
